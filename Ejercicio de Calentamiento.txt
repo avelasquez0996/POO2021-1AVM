@@ -1,0 +1,66 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+struct agenda_telefonica{
+    char nombre[20]={"Vacio"};
+    char apellido[20];
+    int indicativo;
+    int telefono;
+}contacto[20];
+
+int main(){
+    int seleccion,modificar;
+    int i;
+    char bandera='F';
+    char retorno='s',contactonuevo='s';
+
+    cout<<"***Agenda Telefonica***\n"<<endl;
+
+    while(retorno=='s'){
+        //Menu de opciones de la agenda
+        cout<<"\aIngrese una opcion:\n";
+        cout<<"1)Imprimir contactos\n";
+        cout<<"2)Ingresar un contacto.\n";
+        cout<<"3)Modificar un contacto.\n";
+        cout<<"4)Eliminar un contacto.\n";
+        cin>>seleccion;
+        switch(seleccion){//para seleccionar el menu
+        case 1:
+            if(bandera=='V'){
+                for(i=0;i<10;i++){
+                    if(contacto[i].indicativo!=0){
+                        cout<<"Contacto "<<i+1<<": "<<endl;
+                        cout<<contacto[i].nombre<<" "<<contacto[i].apellido<<"\n";
+                        cout<<contacto[i].indicativo<<"-"<<contacto[i].telefono<<endl;
+                    }
+                } 
+            }else{
+            cout<<"***No hay contactos agendados***"<<endl;
+            }
+        break;
+        case 2://ingresar contactos  
+            while(contactonuevo=='s'){
+                cout<<"Ingrese la posicion donde quiere agregar el contacto: ";
+                cin>>modificar;
+                cin.ignore(256,'\n');
+                cout<<"Ingrese su nombre: ";
+                cin.getline(contacto[modificar-1].nombre,30,'\n');
+                cout<<"ingrese su apellido: ";
+                cin.getline(contacto[modificar-1].apellido,30,'\n');
+                cout<<"Ingrese el indicativo: ";
+                cin>>contacto[modificar-1].indicativo;
+                cout<<"Ingrese su telefono: ";
+                cin>>contacto[modificar-1].telefono;
+
+                cout<<"\nDesea ingresar un nuevo contacto? (s/n): ";
+                cin>>contactonuevo;
+            }
+            bandera='V';
+        break;
+        }
+        cout<<"\nDesea seleccionar otra opcion? (s/n): "<<endl;
+        cin>>retorno; 
+    }
+    return 0; 
+}
