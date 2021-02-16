@@ -1,0 +1,13 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+float IVA = 1.19;
+int valor = 20000;
+float valor_incrementado = valor *IVA;
+cout << "Valor final: " << valor_incrementado;
+
+    return 0;
+}
